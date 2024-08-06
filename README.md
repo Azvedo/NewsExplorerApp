@@ -1,0 +1,2 @@
+# NewsExplorerApp
+App de Notícias
