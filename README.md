@@ -32,6 +32,7 @@ PARA EXECUTAR O APP LOCALMENTE SIGA OS PASSOS ABAIXO:
 
 Clone este repositório: 
 git clone [https://github.com/Azvedo/NewExplore.git](https://github.com/Azvedo/NewsExplorerApp.git)
+
 cd NewExplore
 
 Instale as dependências do projeto:
