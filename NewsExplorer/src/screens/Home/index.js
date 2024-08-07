@@ -1,8 +1,7 @@
 import { Component } from 'react';
-import { View, Text, TextInput , Button ,FlatList, StyleSheet, TouchableOpacity} from 'react-native';
+import { View, Text, TextInput, Button, ScrollView, StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
 import api from '../../services/Api';
-import { Logo, Home_card, Header } from "../../components";
-import { StatusBar } from 'expo-status-bar';
+import { Logo, Home_card} from "../../components";
 
 class Home extends Component {
   constructor(props) {
@@ -39,7 +38,7 @@ class Home extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.nav}>
           <Logo height={64} width={120} />
         </View>
@@ -57,31 +56,24 @@ class Home extends Component {
           <Text style={styles.heading}>Principais Notícias</Text>
         </View>
         <StatusBar style="light" />
-        <FlatList
-          data={this.state.news}
-          keyExtractor={(item) => item.url}
-          renderItem={({ item }) => (
+        {this.state.news.map((item) => (
           <Home_card 
+            key={item.url}
             urlToImage={item.urlToImage} 
             title={item.title} 
             author={item.author} 
             date={item.publishedAt} 
           />
-          )}
-        />
+        ))}
         <View>
           <Text style={styles.historyHeading}>Histórico de buscas recentes:</Text>
         </View>
-        <FlatList
-          data={this.state.searchHistory}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Results', { query: item })}>
-              <Text style={styles.historyItem}>{item}</Text>
-            </TouchableOpacity>
-          )}
-        />
-      </View>
+        {this.state.searchHistory.map((item, index) => (
+          <TouchableOpacity key={index.toString()} onPress={() => this.props.navigation.navigate('Results', { query: item })}>
+            <Text style={styles.historyItem}>{item}</Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
     );
   }
 }
@@ -90,7 +82,7 @@ export default Home;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
   },
@@ -110,7 +102,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginVertical: 10,
   },
-
   key_word: {
     width: '80%',
     height: 45,
@@ -120,33 +111,27 @@ const styles = StyleSheet.create({
     margin: 20,
     padding: 10,
   },
-
   inputContainer: {
     width: '93%',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-
   },
-
   historyHeading: {
     fontSize: 18,
     fontWeight: 'bold',
     marginVertical: 10,
   },
-
-  searchHistory:{
+  searchHistory: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
-
   historyItem: {
     fontSize: 16,
     marginVertical: 3,
     color: 'blue',
   },
-  
 });

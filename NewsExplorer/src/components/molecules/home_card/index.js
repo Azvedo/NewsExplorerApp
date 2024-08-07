@@ -1,9 +1,10 @@
 import {Text, Image,View, StyleSheet  } from 'react-native';
 
 
-export const Home_card = ({ urlToImage, title, author, date }) => {
+export const Home_card = ({itemKey ,urlToImage, title, author, date }) => {
     return (
         <View style={styles.item}>
+          <View style={styles.card} key={itemKey}></View>
             {urlToImage && (
                 <Image
                     source={{ uri: urlToImage }}

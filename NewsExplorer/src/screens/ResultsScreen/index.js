@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { View, FlatList, Text, StyleSheet, StatusBar, ActivityIndicator} from 'react-native';
 import api from '../../services/Api';
 import { Results_card, Logo } from "../../components";
