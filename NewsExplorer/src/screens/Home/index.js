@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image, FlatList, StyleSheet } from 'react-native';
 import api from '../../services/Api';
-import { Logo } from "../../components";
+import { Logo, Home_card } from "../../components";
 import { StatusBar } from 'expo-status-bar';
 
 class Home extends Component {
@@ -15,7 +15,7 @@ class Home extends Component {
 
   async componentDidMount() {
     try {
-      const response = await api.get('top-headlines?country=br&apiKey=1cb3adba6281437583fb4ea7c0419c02');
+      const response = await api.get('top-headlines?sources=bbc-news&apiKey=1cb3adba6281437583fb4ea7c0419c02');
       this.setState({
         news: response.data.articles,
       });
@@ -36,18 +36,7 @@ class Home extends Component {
           data={this.state.news}
           keyExtractor={(item) => item.url}
           renderItem={({ item }) => (
-            <View style={styles.item}>
-              {item.urlToImage && (
-                <Image
-                  source={{ uri: item.urlToImage }}
-                  style={styles.image}
-                />
-              )}
-              <Text style={styles.title}>{item.title}</Text>
-              <Text>{item.description}</Text>
-              <Text style={styles.author}>{item.author}</Text>
-              <Text>{new Date(item.publishedAt).toLocaleString()}</Text>
-            </View>
+          <Home_card urlToImage={item.urlToImage} title={item.title} author={item.author} date={item.publishedAt} />
           )}
         />
       </View>
@@ -60,7 +49,7 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgba(242,201,37,0.9)',
+    backgroundColor: '#fff',
     alignItems: 'center',
   },
   nav: {
@@ -78,27 +67,5 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     marginVertical: 10,
-  },
-  item: {
-    marginBottom: 20,
-    padding: 10,
-    backgroundColor: '#f9f9f9',
-    borderRadius: 5,
-    width: '90%',
-    alignSelf: 'center',
-  },
-  image: {
-    width: '100%',
-    height: 150,
-    marginBottom: 10,
-    borderRadius: 5,
-  },
-  title: {
-    fontSize: 19,
-    fontWeight: 'bold',
-  },
-  author: {
-    fontStyle: 'italic',
-    marginVertical: 5,
   },
 });
