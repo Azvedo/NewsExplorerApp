@@ -1,6 +1,6 @@
 # NewsExplorerApp
-NewExplore
-NewExplore é um aplicativo móvel desenvolvido com React Native e Expo, projetado para oferecer uma experiência de descoberta de notícias rápida e personalizada. Utilizando a NewsAPI, o aplicativo fornece acesso fácil às principais manchetes e permite que os usuários explorem notícias específicas por meio de pesquisas por palavra-chave. Além disso, o aplicativo mantém um histórico de pesquisas recentes para referência durante a sessão.
+NewsExplore
+NewsExplore é um aplicativo móvel desenvolvido com React Native e Expo, projetado para oferecer uma experiência de descoberta de notícias rápida e personalizada. Utilizando a NewsAPI, o aplicativo fornece acesso fácil às principais manchetes e permite que os usuários explorem notícias específicas por meio de pesquisas por palavra-chave. Além disso, o aplicativo mantém um histórico de pesquisas recentes para referência durante a sessão.
 
 Funcionalidades
 1. Tela Home:
