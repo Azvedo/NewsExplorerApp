@@ -9,11 +9,13 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "axios": "^1.7.3",
     "expo": "~51.0.24",
     "expo-status-bar": "~1.12.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-native": "0.74.3",
+    "react-native-gesture-handler": "^2.18.1",
     "styled-components": "^6.1.12"
   },
   "devDependencies": {
