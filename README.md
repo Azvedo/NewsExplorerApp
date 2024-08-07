@@ -4,15 +4,24 @@ NewExplore é um aplicativo móvel desenvolvido com React Native e Expo, projeta
 
 Funcionalidades
 1. Tela Home
+
 Principais Manchetes: Exibe as principais notícias do dia, permitindo que os usuários se mantenham atualizados com os eventos mais importantes.
+
 Pesquisa por Palavra-Chave: Oferece uma barra de pesquisa que permite aos usuários buscar notícias específicas por tópicos de seu interesse.
 2. Tela de Resultados
+
 Exibição de Resultados: Mostra as notícias relevantes para a palavra-chave pesquisada.
+
 3. Histórico de Pesquisas Recentes
+
 Registro de Sessão: Armazena as palavras-chave pesquisadas durante a sessão atual, permitindo fácil acesso às buscas recentes e melhorando a experiência do usuário.
+
 Tecnologias Utilizadas
+
 React Native: Framework para o desenvolvimento do aplicativo móvel.
+
 Expo: Plataforma que facilita o desenvolvimento e a implantação do aplicativo.
+
 NewsAPI: Serviço de API para fornecer as notícias mais recentes e relevantes.
 
 
