@@ -6,7 +6,7 @@ import { Logo } from '../../components/atoms/Logo';
 export const SplashScreen = () =>{
   return (
     <View style={styles.container}>
-      <Logo />
+      <Logo height={150} width={350}/>
       <StatusBar style="light" />
     </View>
   );
@@ -15,7 +15,7 @@ export const SplashScreen = () =>{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#111',
+    backgroundColor: 'rgb(0, 20, 20)',
     alignItems: 'center',
     justifyContent: 'center',
   },
