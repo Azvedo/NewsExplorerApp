@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, FlatList, Text, StyleSheet, StatusBar } from 'react-native';
+import { View, FlatList, Text, StyleSheet, StatusBar, ActivityIndicator} from 'react-native';
 import api from '../../services/Api';
 import { Results_card, Logo } from "../../components";
 
@@ -26,7 +26,9 @@ export default function ResultsScreen({ route }) {
   return (
     <View style={styles.container}>
       {loading ? ( // exibe a mensagem de carregamento enquanto as notícias estão sendo buscadas
-        <Text>Loading...</Text>
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="rgb(242,201,37)" />
+        </View>
       ) : (
         <View style = {styles.container}>
           <View style={styles.nav}>
@@ -78,5 +80,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginVertical: 10,
     padding: 10,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center', // Centraliza verticalmente
+    alignItems: 'center', // Centraliza horizontalmente
   },
 });

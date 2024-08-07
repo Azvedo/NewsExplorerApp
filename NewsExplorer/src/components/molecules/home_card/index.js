@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: 'rgba(242,201,37,0.9)',
         borderRadius: 5,
-        width: '93%',
+        width: '95%',
         alignSelf: 'center',
     },
     image: {

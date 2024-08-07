@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { View, Text, TextInput , Button ,FlatList, StyleSheet} from 'react-native';
+import { View, Text, TextInput , Button ,FlatList, StyleSheet, TouchableOpacity} from 'react-native';
 import api from '../../services/Api';
 import { Logo, Home_card, Header } from "../../components";
 import { StatusBar } from 'expo-status-bar';
@@ -11,6 +11,7 @@ class Home extends Component {
     this.state = {
       news: [], // onde serão armazenadas as notícias
       query: '', // onde será armazenada a palavra-chave pela qual o usuário deseja buscar
+      searchHistory: [], // onde serão armazenadas as palavras-chave pesquisadas
     };
   }
 
@@ -26,7 +27,14 @@ class Home extends Component {
   }
 
   goToResults = () => {
-    this.props.navigation.navigate('Results', { query: this.state.query }); //passa a palavra-chave para a próxima tela como parâmetro
+    const { query, searchHistory } = this.state;
+
+    // Navega para a tela de resultados
+    this.props.navigation.navigate('Results', { query }); //passa a palavra-chave para a próxima tela como parâmetro
+
+    // Adiciona a busca ao histórico, removendo duplicatas
+    const updatedHistory = searchHistory.filter(item => item !== query); 
+    this.setState({ searchHistory: [query, ...updatedHistory], query: '' });
   };
 
   render() {
@@ -45,7 +53,9 @@ class Home extends Component {
           {/* // Botão para buscar as notícias */}
           <Button title="Buscar" onPress={this.goToResults}/>   
         </View>
-        <Text style={styles.heading}>Principais Notícias</Text>
+        <View>
+          <Text style={styles.heading}>Principais Notícias</Text>
+        </View>
         <StatusBar style="light" />
         <FlatList
           data={this.state.news}
@@ -57,6 +67,18 @@ class Home extends Component {
             author={item.author} 
             date={item.publishedAt} 
           />
+          )}
+        />
+        <View>
+          <Text style={styles.historyHeading}>Histórico de buscas recentes:</Text>
+        </View>
+        <FlatList
+          data={this.state.searchHistory}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Results', { query: item })}>
+              <Text style={styles.historyItem}>{item}</Text>
+            </TouchableOpacity>
           )}
         />
       </View>
@@ -107,4 +129,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
 
   },
+
+  historyHeading: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginVertical: 10,
+  },
+
+  searchHistory:{
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+
+  historyItem: {
+    fontSize: 16,
+    marginVertical: 3,
+    color: 'blue',
+  },
+  
 });
