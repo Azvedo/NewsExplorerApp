@@ -1,8 +1,8 @@
-import { SplashScreen } from './src/screens/SplashScreen';
+import Navigation from './src/screens/Navigation';
 
 
 export default function App() {
   return (
-    <SplashScreen/>
+    <Navigation/>
   );
 }
