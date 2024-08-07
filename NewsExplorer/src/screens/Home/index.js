@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { View, Text, TextInput , Button ,FlatList, StyleSheet} from 'react-native';
 import api from '../../services/Api';
-import { Logo, Home_card } from "../../components";
+import { Logo, Home_card, Header } from "../../components";
 import { StatusBar } from 'expo-status-bar';
 
 class Home extends Component {

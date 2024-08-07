@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, FlatList, Text, StyleSheet } from 'react-native';
+import { View, FlatList, Text, StyleSheet, StatusBar } from 'react-native';
 import api from '../../services/Api';
-import { Results_card } from "../../components";
+import { Results_card, Logo } from "../../components";
 
 export default function ResultsScreen({ route }) {
   const { query } = route.params; // palavra-chave pela qual o usuário deseja buscar
@@ -28,7 +28,13 @@ export default function ResultsScreen({ route }) {
       {loading ? ( // exibe a mensagem de carregamento enquanto as notícias estão sendo buscadas
         <Text>Loading...</Text>
       ) : (
-        <FlatList
+        <View style = {styles.container}>
+          <View style={styles.nav}>
+            <Logo height={64} width={120} />
+          </View>
+          <Text style={styles.heading}>Resultado da sua pesquisa sobre {query}</Text>
+          <StatusBar style="light" />
+          <FlatList
           data={articles}
           keyExtractor={(item) => item.url}
           renderItem={({ item }) => (
@@ -40,8 +46,10 @@ export default function ResultsScreen({ route }) {
               date={item.publishedAt} 
               link={item.url}
               />
+            
           )}
-        />
+        />  
+        </View>
       )}
     </View>
   );
@@ -50,7 +58,25 @@ export default function ResultsScreen({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
     backgroundColor: '#fff',
+    alignItems: 'center',
+    width: '100%',
+  },
+  nav: {
+    paddingTop: 30,
+    paddingBottom: 16,
+    width: '100%',
+    height: 84,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgb(0, 20, 20)',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+  },
+  heading: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginVertical: 10,
+    padding: 10,
   },
 });
