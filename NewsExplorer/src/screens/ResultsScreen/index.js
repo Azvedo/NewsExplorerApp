@@ -12,7 +12,7 @@ export default function ResultsScreen({ route }) {
     const fetchArticles = async () => {
       setLoading(true);
       try {
-        const response = await api.get(`everything?q=${query}&apiKey=1cb3adba6281437583fb4ea7c0419c02`); // busca as notícias de acordo com a palavra-chave
+        const response = await api.get(`everything?q=${query}&apiKey=5524bfd25d4f4b57bdf298296dcc898a`); // busca as notícias de acordo com a palavra-chave
         setArticles(response.data.articles); // armazena as notícias
       } catch (error) {
         console.error('Erro ao buscar as notícias:', error);

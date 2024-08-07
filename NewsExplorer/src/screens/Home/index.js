@@ -17,7 +17,7 @@ class Home extends Component {
 
   async componentDidMount() {
     try {
-      const response = await api.get('top-headlines?sources=bbc-news&apiKey=1cb3adba6281437583fb4ea7c0419c02');
+      const response = await api.get('top-headlines?sources=bbc-news&apiKey=5524bfd25d4f4b57bdf298296dcc898a');
       this.setState({
         news: response.data.articles,
       });
